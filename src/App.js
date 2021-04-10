@@ -14,7 +14,10 @@ export default function App() {
         </main>
         <footer className="footer text-center">
           <small>
-            coded by Nimi Dada, open-sourced <a href="#">Github</a>
+            coded by Nimi Dada, open-sourced{" "}
+            <a href="https://github.com/Bunny-buzz/project-dictionary">
+              Github
+            </a>
           </small>
         </footer>
       </div>
