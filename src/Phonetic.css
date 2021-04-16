@@ -1,9 +1,11 @@
 .Phonetic a {
   border: 1px solid whitesmoke;
   text-decoration: none;
-  padding: 5px 10px;
+  padding: 5px 3px;
   border-radius: 7px;
   transition: all 150ms ease-in-out;
+  background-color: whitesmoke;
+  color: #0046bd;
 }
 
 .Phonetic a:hover {
