@@ -1,0 +1,16 @@
+.Phonetic a {
+  border: 1px solid whitesmoke;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 7px;
+  transition: all 150ms ease-in-out;
+}
+
+.Phonetic a:hover {
+  background-color: #0046bd;
+  color: whitesmoke;
+}
+
+.Phonetic .oral {
+  opacity: 0.5;
+}

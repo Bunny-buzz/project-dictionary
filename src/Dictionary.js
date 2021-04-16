@@ -4,22 +4,25 @@ import axios from "axios";
 
 import "./Dictionary.css";
 
-export default function Dictionary() {
-  let [word, setWord] = useState("");
+export default function Dictionary(props) {
+  let [word, setWord] = useState(props.defaultKeyword);
   let [meaning, setMeaning] = useState(null);
+  let [loaded, setLoaded] = useState(false);
 
   function handleResponse(response) {
     console.log(response.data[0]);
     setMeaning(response.data[0]);
   }
-  function search(event) {
-    event.preventDefault();
 
+  function search() {
     // documentation: https://dictionaryapi.dev/
-
     let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en_US/${word}`;
     console.log(apiUrl);
     axios.get(apiUrl).then(handleResponse);
+  }
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
   }
 
   function handleWordChange(event) {
@@ -27,12 +30,32 @@ export default function Dictionary() {
     setWord(event.target.value);
   }
 
-  return (
-    <div className="Dictionary">
-      <form onSubmit={search}>
-        <input type="search" onChange={handleWordChange} autoFocus={true} />
-      </form>
-      <Results results={meaning} />
-    </div>
-  );
+  function load() {
+    setLoaded(true);
+    search();
+  }
+
+  if (loaded) {
+    return (
+      <div className="Dictionary">
+        <section>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="search"
+              onChange={handleWordChange}
+              defaultValue={props.defaultKeyword}
+              autoFocus={true}
+            />
+          </form>
+          <div className="hint">
+            search words: serendipty, happiness, determination....
+          </div>
+        </section>
+        <Results results={meaning} />
+      </div>
+    );
+  } else {
+    load();
+    return "Loading";
+  }
 }
